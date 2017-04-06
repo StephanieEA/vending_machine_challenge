@@ -1,16 +1,75 @@
 export default class VendingMachine {
   constructor() {
-    // status can be ["idle", "credited", "vending"]
-    this.state = { status: "idle", credits: 0, change: 0, selection: null }
+    this.state = {
+      status: "idle",
+      credits: 0,
+      change: 0,
+      error: null,
+      candies: {
+        'A1': [{name:'twix', price: 75}, {name: 'twix', price: 75}],
+        'A2': [{name: 'snickers', price: 75}],
+        'B1': []
+      }
+    }
   }
 
-  insertCredit(person, credit) {
+  insertCredit(person, credit, selection) {
+    this.state.status = 'credited'
+    this.state.credits = this.state.credits + credit
+    if (!this.isValidSelection(selection)) {
+      return false
+    }
+    if (!this.isEnoughMoney(this.state.credits, selection)) {
+      return false
+    }
+    if (!this.isTreatThere(selection)) {
+      return false
+    }
+    return this.dispenseCandy(selection)
+  }
 
-    if (credit < 75) {
-      return `You entered ${credit} + Mo money required!`
+  isValidSelection(selection) {
+    if (!this.state.candies[selection]) {
+      this.state.error = 'Choose a real option'
+      return false
     } else {
-      this.state.credits = this.state.credits + credit
-      this.state.status = 'credited'
+      return true
+    }
+  }
+
+  isEnoughMoney(credit, selection) {
+    if (this.state.candies[selection][0].price > credit) {
+      this.state.error = 'Insert mo money'
+      return false
+    } else {
+      return true
+    }
+  }
+
+  isTreatThere(selection) {
+    if (this.state.candies[selection].length !== 0) {
+      return true
+    } else {
+      this.state.error = `Out of ${selection}`
+      return false
+    }
+  }
+
+  dispenseCandy(selection) {
+    this.state.status = 'vending'
+    this.state.credits = this.state.credits - this.state.candies[selection][0].price
+    this.state.candies[selection].pop()
+    return {
+      "selection" : this.state.candies[selection][0]
+      }
+  }
+
+  returnChange() {
+    this.state.change = this.state.credits
+    this.state.credits = 0
+    this.state.status = 'idle'
+    return {
+      change: this.state.change
     }
   }
 
@@ -18,5 +77,3 @@ export default class VendingMachine {
     this.constructor()
   }
 }
-
-// treats should be a large object with arrays that correspond to selectors { A1: [],} then you can get the price like B2[0].price
