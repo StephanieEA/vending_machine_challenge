@@ -20,9 +20,7 @@ describe('Complete Interaction Tests', function() {
     assert.equal(vendingMachine.state.credits, 0)
     assert.equal(vendingMachine.state.change, 0)
 
-    assert.deepEqual(vendingMachine.insertCredit(alex, 100, 'A1'), {
-      'selection': {name:'twix', price: 75}
-     })
+    assert.equal(vendingMachine.insertCredit(alex, 100, 'A1'), true)
      assert.equal(vendingMachine.state.change, 0)
      assert.equal(vendingMachine.state.credits, 25)
      assert.equal(vendingMachine.state.status, 'vending')
@@ -207,9 +205,7 @@ describe('dispenseCandy method', function() {
     assert.equal(vendingMachine.state.candies.A1.length, 2)
     assert.equal(vendingMachine.state.status, 'idle')
 
-    assert.deepEqual(vendingMachine.dispenseCandy('A1'), {
-      selection : {name: 'twix', price: 75}
-    })
+    assert.equal(vendingMachine.dispenseCandy('A1'), true)
 
     assert.equal(vendingMachine.state.status, 'vending')
     assert.equal(vendingMachine.state.candies.A1.length, 1)
