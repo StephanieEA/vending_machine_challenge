@@ -1,14 +1,16 @@
-export default class VendingMachine {
+class VendingMachine {
   constructor() {
     this.state = {
       status: "idle",
       credits: 0,
       change: 0,
       error: null,
+      dispensed: [],
       candies: {
         'A1': [{name:'twix', price: 75}, {name: 'twix', price: 75}],
         'A2': [{name: 'snickers', price: 75}],
-        'B1': []
+        'B1': [],
+        'B2': [{name:'ring pop', price: 25}, {name:'ring pop', price: 25}]
       }
     }
   }
@@ -58,19 +60,15 @@ export default class VendingMachine {
   dispenseCandy(selection) {
     this.state.status = 'vending'
     this.state.credits = this.state.credits - this.state.candies[selection][0].price
+    this.state.dispensed.push(this.state.candies[selection][0])
     this.state.candies[selection].pop()
-    return {
-      "selection" : this.state.candies[selection][0]
-      }
+    return true
   }
 
   returnChange() {
     this.state.change = this.state.credits
     this.state.credits = 0
     this.state.status = 'idle'
-    return {
-      change: this.state.change
-    }
   }
 
   reset() {

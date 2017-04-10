@@ -1,3 +1,4 @@
+
 require('babel-core/register')({
   ignore: /node_modules\/(?!ProjectB)/
 });
@@ -236,6 +237,6 @@ describe('dispenseCandy method', function() {
     vendingMachine.returnChange()
     assert.equal(vendingMachine.state.status, 'idle')
     assert.equal(vendingMachine.state.credits, 0)
-    assert.equal(vendingMachine.state.change, 25)    
+    assert.equal(vendingMachine.state.change, 25)
   })
 })

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vending Machine</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdn.rawgit.com/jquery/jquery/2.1.4/dist/jquery.min.js"></script>
+    <script src='vendingMachine.js'></script>
+    <script src='person.js'></script>
+    <script src='front-end.js'></script>
+  </head>
+  <body>
+    <h1>Vending Machine Challenge</h1>
+    <section class='vendingMachine'>
+      <article class="controls">
+        <input type="number" min="0.01" step="0.01" max="2500" placeholder="Enter Cents" class="credits"/>
+        <br/>
+        <button type="button" name="A" class="letter">A</button>
+        <button type="button" name="1" class="number">1</button>
+        <br/>
+        <button type="button" name="B" class="letter">B</button>
+        <button type="button" name="2" class="number">2</button>
+        <br/>
+        <button type="button" name="Change" class='change'>Change</button>
+      </article>
+      <article class="store"></article>
+      <aside class="return-change"></aside>
+      <aside class="return-treat"></aside>
+    </section>
+  </body>
+</html>
