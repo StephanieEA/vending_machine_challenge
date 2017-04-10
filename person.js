@@ -1,4 +1,4 @@
-export default class Person {
+class Person {
   constructor() {
     this.state = {
       credits: 500,

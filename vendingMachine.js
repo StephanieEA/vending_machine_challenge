@@ -1,4 +1,4 @@
-export default class VendingMachine {
+class VendingMachine {
   constructor() {
     this.state = {
       status: "idle",
