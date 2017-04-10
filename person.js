@@ -1,4 +1,5 @@
-export default class Person {
+// export default 
+class Person {
   constructor() {
     this.state = {
       credits: 500,
@@ -21,4 +22,8 @@ export default class Person {
   reset() {
     this.constructor()
   }
+}
+
+if(typeof module !== 'undefined') {
+  module.exports.default = Person
 }

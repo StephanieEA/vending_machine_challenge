@@ -1,3 +1,8 @@
+if(typeof require !== 'undefined') {
+ const VendingMachine = require('./vendingMachine');
+ const Person = require('./person')
+}
+
 const person = new Person()
 const vendingMachine = new VendingMachine()
 let selection = null

@@ -1,4 +1,5 @@
-export default class VendingMachine {
+// export default
+class VendingMachine {
   constructor() {
     this.state = {
       status: "idle",
@@ -74,4 +75,8 @@ export default class VendingMachine {
   reset() {
     this.constructor()
   }
+}
+
+if(typeof module !== 'undefined') {
+  module.exports.default = VendingMachine
 }
